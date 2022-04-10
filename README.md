@@ -1,12 +1,12 @@
-###############
+
 # Blackjack-RL
-###############
+
 
 Agent learns to count cards and win at some blackjack games, like those on discord servers
 
-###############
+
 # Blackjack basics
-###############
+
 
 Blackjack is a simple card game where you try to get your hand's total value higher than the dealer but not higher than 21.
 Ace is worth 11, or worth 1 depending on if equaling 11 results in value > 21
@@ -18,9 +18,9 @@ Push means tie
 Loss can be agent busted, or dealer got a higher hand without exceeding 21
 Dealer advantage: Dealer waits until player is done, so player can bust before dealer ever tries, meaning dealer wins slight majority of games in most cases
 
-###############
+
 # AGENT ACTIONS
-###############
+
 
 Actions prior to a round of blackjack, based on BET_MIN and BET_INCR, both set in DealerStub.py:
 Bet small (BET_MIN)
@@ -34,9 +34,9 @@ Double Down: double the initial bet, hit, and end the game. Cards are then evalu
 
 Dealer advantage: Dealer waits until player is done, so player can bust before dealer ever tries, meaning dealer wins slight majority of games in most cases
 
-###############
+
 # UNIQUE BLACKJACK RULES
-###############
+
 
 The rules that may be unique here are based on ubeleiveaboat's dealer (discord) and are as follows:
 *  Dealer hits until their hand is > DEALER_MIN (set in DealerStub.py, default 16)
@@ -44,9 +44,9 @@ The rules that may be unique here are based on ubeleiveaboat's dealer (discord) 
 *  Agent can bet any amount, but the RL's action space is limited to small bet, medium bet, and large bet (see above)
 *  Agent can chose to stand only if their hand exceeds 11 (hard coded in DQN.act)
 
-###############
+
 # USAGE
-###############
+
 
 This code can be used as follows:
 Initialize a dealer with number of decks per shoe as a parameter (default 3, like unbeleivaboat's dealer)
@@ -59,9 +59,9 @@ Optional values inlcude:
 *  BJ_PAYOUT (some servers count blackjack as 1x, 1.5x or even 2x bet)
 *  PARTICIPATION_TROPHY (this is for the millenials who eat avacado toast)
 
-###############
+
 # Imports
-###############
+
 
 import random
 import numpy as np
