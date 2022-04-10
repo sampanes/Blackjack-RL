@@ -1,7 +1,7 @@
 import random
-from ShoeObj import Shoe
-from ShoeObj import split, get_card_value_and_soft
-from ShoeObj import ret_full_shoe
+from Shoe import Shoe
+from Shoe import split, get_card_value_and_soft
+from Shoe import ret_full_shoe
 
 ADD_CLOSE_TO_21 = True
 DEALER_MIN = 16
@@ -67,12 +67,12 @@ class Dealer:
         self.reshuffled_bool = False
 
     def draw_rand_card(self):
-        deck_dict = self.shoe.get_cards_unUSED()
+        deck_dict = self.shoe.get_cards_unused()
         if self.shoe.numberofcards_remaining_actual > 0:
             pulled_card = random.choice(list(deck_dict))
             while deck_dict[pulled_card] == 0:
                 pulled_card = random.choice(list(deck_dict))
-            self.shoe.USE_card(pulled_card)
+            self.shoe.use_card(pulled_card)
             self.shoe.numberofcards_remaining_actual -= 1
             return pulled_card
         else:
