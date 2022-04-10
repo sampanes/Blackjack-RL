@@ -122,7 +122,6 @@ class DQN:
 def train_dqn_blackjack(episode):
     
     loss = []
-    reward_quantities_d = {}
     
     # Set action space as Stand + Hit + Double Down + Small  + Medium + Large bets
     action_space = 6
@@ -163,14 +162,6 @@ def train_dqn_blackjack(episode):
                 if PRINT_AMOUNT and (e % math.floor(episode / PRINT_AMOUNT) == 0):
                     print("episode: {:,}/{:,}\tscore: {:,.2f}\tepsilon: {:.6f}".format(e, episode, score, agent.epsilon))
                 break
-                
-        if not reward in reward_quantities_d:
-            
-            reward_quantities_d[reward] = 1
-            
-        else:
-            
-            reward_quantities_d[reward] += 1
             
         env.see_cards_hands()
         loss.append(score)
