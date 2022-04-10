@@ -58,7 +58,7 @@ class DQN:
       
         self.memory.append((state, action, reward, next_state, done))
 
-    def act(self, state):
+    def act(self, state, game_over):
         # Action that DQN agent takes depends on if game is ongoing or not, and if agent's hand is less than 12
         # Actions:
         #   Ongoing round
@@ -70,7 +70,6 @@ class DQN:
         #       4 : Bet Medium
         #       5 : Bet Large
         
-        game_over = env.game_over                               # check if round is over
         sr = 0 if state[0][-3] > 11 else 1                      # action 0 (stand) is only allowed if hand > 11
         start_range = 3 if game_over else sr                    # actions can be 3 through 5 if round is complete, otherwise (0 or 1) through 2
         stop_range = self.action_space if game_over else 3      # use ternary expressions to set start and stop range for action choice
@@ -140,14 +139,15 @@ def train_dqn_blackjack(episode):
     ph = []
     epsilon_list = []
 
-    for e in tqdm(range(episode), colour='green'): # TDQM prints a pretty progress bar, not needed
+    for e in tqdm(range(episode), colour='green'): # TQDM prints a pretty progress bar, not needed
         
         state = env.reset()
         state = np.reshape(state, (1, state_space))
+        done = env.game_over
         
         for i in range(max_steps):
             
-            action = agent.act(state)
+            action = agent.act(state, done)
             reward, next_state, done = env.step(action)
             score += reward
             next_state = np.reshape(next_state, (1, state_space))
