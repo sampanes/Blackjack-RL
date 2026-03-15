@@ -47,7 +47,8 @@ def get_total_and_soft_from_hand(hand):
             total -= 10
             soft_list.pop()
 
-    return total, soft_bool
+    # A hand is soft only when at least one ace is still valued as 11.
+    return total, bool(soft_list)
 
 
 class Dealer:
